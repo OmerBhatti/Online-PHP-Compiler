@@ -1,22 +1,12 @@
-<?php
-if(isset($_POST['submit']))
-{
-    $BR = file_get_contents('beforeResult.php');
-    $myfile = fopen("result.php", "w") or die("Unable to open file!");
-    $txt = $BR.$_POST['code']."\n\n?>\n<br><br>\n<a href='index.php'>Go Back To Editor</a></div>\n</body>\n</html>";
-    fwrite($myfile, $txt);
-    header("Location: result.php");
-}
-?>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <div class="Container">
+  <div class="Container">
     <h1>PHP Compiler</h1>
     <form action="index.php" method="post">
     <textarea name="code" id="code" cols="100" rows="25" required><?php echo "<?php\n\necho \"Hello World\";"?>
@@ -25,7 +15,9 @@ if(isset($_POST['submit']))
     <input type="submit" id="button" name="submit" value="RUN">
     </form>
     </div>
-</body>
+    <br>
+  <div id="result"></div>
+
 
 <script>
 //resolves tab bug in textarea
@@ -40,5 +32,27 @@ document.getElementById('code').addEventListener('keydown', function(e) {
       "\t" + this.value.substring(end);
   }
 });
+
+function RUN()
+{
+  $.ajax({
+    type:"GET",
+    url: 'result.php',
+    success: function(response){
+      $("#result").html(response);
+    }
+  });
+}
+
 </script>
+<?php
+if(isset($_POST['submit']))
+{
+    $myfile = fopen("result.php", "w") or die("Unable to open file!");
+    $txt = $_POST['code']."\n\n?>";
+    fwrite($myfile, $txt);
+    echo "<script>RUN();</script>";
+}
+?>
+</body>
 </html>
