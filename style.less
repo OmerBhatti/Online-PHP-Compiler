@@ -1,0 +1,119 @@
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: #c0e9e9;
+}
+
+.Container1{
+    float: left;
+    width:53%;
+}
+.Container2{
+    margin-top: 40px;
+    background-color: white;
+    min-height: 50%;
+    width: 40%;
+    float:left;
+    box-shadow: 0 0 16px rgba(34, 39, 37, .3);
+}
+.Heading{
+    background-color:#0080b3;
+    color:white;
+    margin-top: 0;
+    padding: 10px 20px;
+}
+#result{
+    padding: 0px 20px;
+}
+#button{
+    position: fixed;
+    top: 30px;
+    left: 42%;
+    padding:10px 20px;
+    border:none;
+    background-color: #0080b3;
+    color:white;
+}
+#button:hover{
+    transition: 0.5s ease;
+    background-color: white;
+    color:#0080b3;
+}
+.custom-textarea {
+    position: relative;
+    width: 800px;
+    max-width: 90%;
+    margin: 20px auto;
+    border-radius: 5px;
+    box-shadow: 0 0 16px rgba(34, 39, 37, .3);
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 42px;
+        width: 16px;
+        height: 100%;
+        background: #FFFFFF;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    & > .textarea {
+        display: block;
+        position: relative;
+        z-index: 1;
+        width: calc(100% - 58px);
+        height: 50%;
+        min-height: 150px;
+        max-height: 90vh;
+        margin-left: 58px;
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Courier New', Courier, monospace;
+        outline: none;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        resize: vertical;
+        white-space: pre;
+        overflow: auto;
+        word-wrap: normal;
+        color: #121113;
+        background: #FFFFFF;
+    }
+
+    & > .textarea::-webkit-scrollbar-track {
+        border-radius: 0;
+        background-color: #c4c4c4;
+    }
+
+    & > .textarea::-webkit-scrollbar {
+        width: 12px;
+        background-color: #ff0000;
+    }
+
+    & > .textarea::-webkit-scrollbar-thumb {
+        border-radius: 0;
+        background-color: #00193b;
+    }
+
+    & > .linenumbers {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 42px;
+        background: #0080b3;
+    }
+
+    & > .linenumbers > .number {
+        color: white;
+        font-family: 'Ubuntu Mono', monospace;
+        font-size: 16px;
+        line-height: 24px;
+        padding-left: 6px;
+    }
+}
+form{
+    margin-bottom: -50px;
+}
