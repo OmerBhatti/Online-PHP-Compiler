@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="Container1">
-    <h1>PHP Compiler</h1>
+    <h1 class="title1">PHP Compiler</h1>
     <form action="index.php" method="post">
     <div class='custom-textarea'>
       <textarea spellcheck="false" class='textarea' name="code" id="code" cols="100" rows="25" required><?php echo "<?php\n\necho \"Hello World\";\n"?>
@@ -17,14 +17,14 @@
       <div class='linenumbers'></div>
     </div>
     </div>
-    <br><br>
     <input type="submit" id="button" name="submit" value="RUN">
-    </form>
-  </div>
-  <div class="Container2">
-    <h1 class='heading'>Result</h1>
-    <div id="result"></div>
-  </div>
+  </form>
+</div>
+
+<div class="Container2">
+  <h2 class='heading'>Result</h2>
+  <div id="result"></div>
+</div>
 
 <script>
 //resolves tab bug in textarea
