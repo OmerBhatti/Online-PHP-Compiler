@@ -3,6 +3,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet/less" type="text/css" href="style.less" />
     <script src="//cdn.jsdelivr.net/npm/less" ></script>
     <title>Document</title>
@@ -26,6 +28,27 @@
   <div id="result"></div>
 </div>
 
+<div class="Container3">
+  <h2 class='heading2'>Files</h2>
+  <div id="files"></div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">File Content</h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 //resolves tab bug in textarea
 document.getElementById('code').addEventListener('keydown', function(e) {
@@ -40,6 +63,19 @@ document.getElementById('code').addEventListener('keydown', function(e) {
   }
 });
 
+function readFile(x)
+{ 
+  var fileName = $(x).attr("id");
+  console.log(fileName);
+  var fileURL= '/Online-PHP-Interpreter/';
+  fetch(fileURL.concat(fileName))
+    .then( r => r.text() )
+    .then( t => 
+    $('.modal-body').html(t) 
+    )
+    $('#myModal').modal("show"); 
+}
+
 function RUN()
 {
   $.ajax({
@@ -47,6 +83,13 @@ function RUN()
     url: 'result.php',
     success: function(response){
       $("#result").html(response);
+    }
+  });
+  $.ajax({
+    type:"GET",
+    url: 'listFiles.php',
+    success: function(response){
+      $("#files").html(response);
     }
   });
 }
@@ -90,7 +133,6 @@ class CustomTextarea {
 
 const textarea = new CustomTextarea(document.querySelector('.custom-textarea'));
 </script>
-
 <?php
 if(isset($_POST['submit']))
 {
